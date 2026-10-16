@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday Sunny Bava ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #080510;
+  color: white;
+  font-family: Georgia, serif;
+  overflow: hidden;
+}
+
+#video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(135deg,#180b30,#65174c,#111c3e);
+  background-size: 300% 300%;
+  animation: bg 7s ease infinite;
+}
+
+@keyframes bg {
+  50% { background-position: 100% 50%; }
+}
+
+#stars, #hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: #ffe6b0;
+  animation: twinkle .7s infinite alternate;
+}
+
+@keyframes twinkle {
+  to { opacity: .15; transform: scale(.6); }
+}
+
+.heartFloat {
+  position: absolute;
+  bottom: -40px;
+  color: #ffb5db;
+  animation: floatUp 5s linear forwards;
+}
+
+@keyframes floatUp {
+  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+}
+
+#content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 22px;
+  transition: opacity .3s;
+}
+
+#eyebrow {
+  color: #ffe6b5;
+  font: 12px Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#title {
+  font-size: clamp(35px,8vw,76px);
+  line-height: 1.12;
+  margin: 16px 0;
+  color: #fff0d0;
+  text-shadow: 0 0 16px #ff9bdb, 0 0 40px #ff4bb8;
+}
+
+#message {
+  font-size: clamp(17px,3.5vw,24px);
+  line-height: 1.5;
+  max-width: 760px;
+  color: #fff3fa;
+}
+
+#timer, #musicLabel {
+  position: absolute;
+  z-index: 8;
+  bottom: 12px;
+  font: 11px Arial, sans-serif;
+  color: #ffffffc7;
+}
+
+#timer { left: 12px; }
+#musicLabel { right: 12px; }
+
+#startScreen {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
+  background: linear-gradient(145deg,#150b2d,#651747,#0b1632);
+}
+
+#startScreen h1 {
+  font-size: clamp(38px,8vw,68px);
+  color: #ffe5b5;
+  text-shadow: 0 0 30px #ff77c8;
+}
+
+#startScreen p {
+  max-width: 500px;
+  line-height: 1.7;
+  color: #ffedf8;
+}
+
+button {
+  border: 1px solid #ffe5bb;
+  border-radius: 40px;
+  padding: 14px 25px;
+  margin-top: 16px;
+  background: linear-gradient(120deg,#ffe7ae,#ffb8df);
+  color: #381139;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#photos {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  align-items: center;
+  justify-content: center;
+  background: #030208;
+}
+
+#finalPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 1;
+  transition: opacity .35s;
+}
+
+#photoCaption {
+  position: absolute;
+  bottom: 9%;
+  left: 4%;
+  right: 4%;
+  text-align: center;
+  font-size: clamp(21px,5vw,40px);
+  color: #fff0ca;
+  text-shadow: 0 0 18px #ff60bd, 0 2px 6px black;
+}
+
+#restart {
+  display: none;
+  position: absolute;
+  z-index: 12;
+  top: 12px;
+  right: 12px;
+  padding: 9px 14px;
+  font-size: 12px;
+}
+
+#pauseBtn {
+  position: absolute;
+  z-index: 12;
+  top: 12px;
+  left: 12px;
+  padding: 9px 14px;
+  font-size: 12px;
+}
+
+#loveEnding {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: radial-gradient(circle,#76184f,#210a35 65%,#05030c);
+}
+
+.loveText {
+  position: absolute;
+  top: 15%;
+  padding: 0 15px;
+  text-align: center;
+  font-size: clamp(21px,5vw,35px);
+  color: #ffe5bd;
+  text-shadow: 0 0 18px #ff6acb;
+}
+
+#targetHeart {
+  font-size: clamp(95px,24vw,175px);
+  z-index: 2;
+  filter: drop-shadow(0 0 18px #ff4fa3);
+  animation: heartBeat .45s infinite alternate;
+}
+
+@keyframes heartBeat {
+  to { transform: scale(1.12); filter: drop-shadow(0 0 42px #ff008c); }
+}
+
+#flyingArrow {
+  position: absolute;
+  left: -20%;
+  top: 50%;
+  font-size: clamp(55px,12vw,80px);
+  transform: rotate(-25deg);
+  z-index: 3;
+}
+
+#loveEnding.shoot #flyingArrow {
+  animation: arrowFly .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+@keyframes arrowFly {
+  0% { left: -20%; top: 50%; opacity: 0; }
+  10% { opacity: 1; }
+  85% { left: 48%; top: 48%; opacity: 1; }
+  100% { left: 52%; top: 48%; opacity: 0; }
+}
+
+.spark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  font-size: 24px;
+  pointer-events: none;
+  animation: sparkBurst 1.3s ease-out forwards;
+}
+
+@keyframes sparkBurst {
+  to {
+    transform: translate(var(--dx),var(--dy)) scale(1.8) rotate(250deg);
+    opacity: 0;
+  }
+}
+
+#heartMessage {
+  position: absolute;
+  bottom: 16%;
+  width: 100%;
+  padding: 0 10px;
+  text-align: center;
+  font-size: clamp(20px,5vw,38px);
+  color: white;
+  opacity: 0;
+  text-shadow: 0 0 20px #ff4fbc;
+}
+
+#loveEnding.blast #targetHeart {
+  animation: heartBlast .65s ease-out forwards;
+}
+
+@keyframes heartBlast {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.7); filter: brightness(3) drop-shadow(0 0 60px white); }
+  100% { transform: scale(.08); opacity: 0; }
+}
+
+#loveEnding.blast #heartMessage {
+  animation: glowMessage .7s .2s forwards;
+}
+
+@keyframes glowMessage {
+  to { opacity: 1; }
+}
+
+#video.paused * {
+  animation-play-state: paused !important;
+}
+
+#video.paused {
+  animation-play-state: paused !important;
+}
+</style>
+</head>
+
+<body>
+<div id="video">
+
+  <div id="stars"></div>
+  <div id="hearts"></div>
+
+  <div id="content">
+    <div id="eyebrow">A little video made with love</div>
+    <h1 id="title">For My Sunny Bava ✨</h1>
+    <div id="message">A special birthday surprise is waiting for you...</div>
+  </div>
+
+  <div id="loveEnding">
+    <div class="loveText">One Last Surprise ❤️</div>
+    <div id="targetHeart">❤️</div>
+    <div id="flyingArrow">🏹</div>
+    <div id="sparkles"></div>
+    <div id="heartMessage">LOVE YOU, SUNNY BAVA! ✨</div>
+  </div>
+
+  <div id="photos">
+    <img id="finalPhoto" src="sunny1.jpg" alt="Sunny Bava">
+    <div id="photoCaption">Happy Birthday, Sunny Bava ❤️</div>
+  </div>
+
+  <div id="timer">00:00</div>
+  <div id="musicLabel">♪ Original instrumental</div>
+
+  <button id="pauseBtn" hidden>⏸️ Pause</button>
+  <button id="restart">↻ Replay</button>
+
+  <div id="startScreen">
+    <div style="font-size:55px">🥳🎂✨</div>
+    <h1>Happy Birthday<br>Sunny Bava!</h1>
+    <p>A special surprise made with love. Turn up your speakers and enjoy!</p>
+    <button id="startButton">▶ Start Birthday Video</button>
+  </div>
+
+  <audio id="photoSong" src="birthday-song.mp3" preload="auto"></audio>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let started = false;
+let isPaused = false;
+let audioContext = null;
+let musicTimer = null;
+let clockTimer = null;
+let startTime = 0;
+let pausedTotal = 0;
+let pauseStarted = 0;
+let videoRun = 0;
+
+const photoSong = $("photoSong");
+
+const scenes = [
+{
+  eyebrow: "A story made just for you",
+  title: "Hii Bavaaa! ❤️✨",
+  text: "Wishing you many, many more happy returns of the day, my dear Bava! May your life always be filled with happiness, love, success, and endless smiles. 🫶🏻"
+},
+{
+  eyebrow: "Thank you for being in my life",
+  title: "You Are So Special to Me ❤️",
+  text: "Thank you for coming into my life, Bava. You are not just my Bava; you are much more than that to me. You are one of the most special person in my life, and honestly, I can't explain in words how much you mean to me. You hold a very special place in my heart that nobody else can replace. ❤️"
+},
+{
+  eyebrow: "Our beautiful memories",
+  title: "1 Year & 8 Months 🧿❤️✨",
+  text: "We met just 1 year and 8 months ago, but it feels like time has flown by so fast! We have fought, teased each other, made silly jokes, laughed together, got angry, fixed things, and somehow always found our way back to each other. No matter how many times we fight, what matters most is that we never give up on our beautiful bond. 🧿"
+},
+{
+  eyebrow: "A bond full of everything",
+  title: "Love, Care & Silly Fights 🫶🏻",
+  text: "Our relationship is a mixture of love, care, teasing, silly fights, cute moments, and countless memories. Sometimes we annoy each other like crazy, but deep down, we know how special this bond is to both of us. 💗"
+},
+{
+  eyebrow: "A wish from my heart",
+  title: "Together Forever ♾️❤️",
+  text: "Bava, I really wish this beautiful bond of ours never breaks. I want us to keep creating memories, teasing each other, supporting each other, and being there for one another through every stage of life. I hope we will always have this same closeness and understanding. ❤️"
+},
+{
+  eyebrow: "You mean so much to me",
+  title: "My Favourite Person 😚❤️",
+  text: "You are my favourite person to tease, my partner in silly jokes, and someone whose presence makes my life more special. I may not always express my feelings perfectly, but please know that you mean a lot to me. 💗"
+},
+{
+  eyebrow: "Birthday wishes from my heart",
+  title: "May All Your Dreams Come True 🎂",
+  text: "On your special day, I wish all your dreams come true, all your worries become lighter, and your smile never fades. May God bless you with good health, success, peace, and all the happiness you deserve. ✨"
+},
+{
+  eyebrow: "One thing to remember",
+  title: "Our Bond, Forever ♾️❤️🧿",
+  text: "No matter how many silly fights we have, I never want us to lose this beautiful bond. We may fight and tease each other, but at the end of the day, I hope we always cherish this relationship. ♾️🧿"
+},
+{
+  eyebrow: "Our special relationship",
+  title: "Bava by Relationship ❤️",
+  text: "Bava by relationship, best friend by heart, and a special bond forever! ♾️🧿💖"
+},
+{
+  eyebrow: "Your day, your happiness",
+  title: "Let Happiness Find You 💖",
+  text: "May all the goodness you give to the world return to you in beautiful and unexpected ways. May this new year of your life bring you unforgettable memories, exciting opportunities, and reasons to celebrate. ✨"
+},
+{
+  eyebrow: "A wish straight from my heart",
+  title: "My Dearest Bava! 🎂❤️",
+  text: "May your birthday fill your heart with happiness and your life with beautiful surprises. Never stop smiling, Bava, because you deserve all the wonderful things this world has to offer! 🫶🏻✨"
+}
+];
+
+const photoFiles = [
+  "sunny1.jpg",
+  "sunny2.jpg",
+  "sunny3.jpg",
+  "sunny4.jpg",
+  "sunny5.jpg",
+  "sunny6.jpg",
+  "sunny7.jpg"
+];
+
+const photoCaptions = [
+  "Happy Birthday, Sunny Bava ❤️",
+  "Keep Smiling, Keep Shining ✨",
+  "May All Your Dreams Come True 🌟",
+  "Lots of Love & Birthday Wishes 🎂",
+  "Every Moment With You Becomes a Beautiful Memory 📸💖",
+  "Your Teasing and Jokes Make Every Day More Fun 😂🫶🏻",
+  "May Life Bring You Endless Success and Wonderful Adventures 🌍✨"
+];
+
+// Stars
+for (let i = 0; i < 65; i++) {
+  const s = document.createElement("span");
+  s.className = "star";
+  s.textContent = "✦";
+  s.style.left = Math.random() * 100 + "%";
+  s.style.top = Math.random() * 100 + "%";
+  s.style.fontSize = (8 + Math.random() * 15) + "px";
+  s.style.animationDelay = Math.random() + "s";
+  $("stars").appendChild(s);
+}
+
+// Floating hearts
+function makeHeart() {
+  const h = document.createElement("span");
+  h.className = "heartFloat";
+  h.textContent = ["♡","♥","✧","💕"][Math.floor(Math.random() * 4)];
+  h.style.left = Math.random() * 100 + "%";
+  h.style.fontSize = (16 + Math.random() * 22) + "px";
+  $("hearts").appendChild(h);
+  setTimeout(() => h.remove(), 5000);
+}
+
+setInterval(makeHeart, 300);
+
+// Pause-aware timer
+function wait(ms, runId) {
+  return new Promise(resolve => {
+    let remaining = ms;
+    let previous = performance.now();
+
+    function step(now) {
+      if (runId !== videoRun) {
+        resolve();
+        return;
+      }
+
+      if (!isPaused) remaining -= now - previous;
+      previous = now;
+
+      if (remaining <= 0) resolve();
+      else requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  });
+}
+
+// Voice narration
+function speak(text) {
+  return new Promise(resolve => {
+    if (!("speechSynthesis" in window)) {
+      resolve();
+      return;
+    }
+
+    speechSynthesis.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-IN";
+    utterance.rate = 1;
+    utterance.pitch = 1.12;
+    utterance.volume = 1;
+
+    const voices = speechSynthesis.getVoices();
+    const voice = voices.find(v => /female|zira|samantha|heera|veena/i.test(v.name))
+      || voices.find(v => /en-IN/i.test(v.lang))
+      || voices.find(v => /^en/i.test(v.lang));
+
+    if (voice) utterance.voice = voice;
+
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      resolve();
+    };
+
+    utterance.onend = finish;
+    utterance.onerror = finish;
+    speechSynthesis.speak(utterance);
+  });
+}
+
+// Instrumental music for message scenes
+function startMusic() {
+  const AC = window.AudioContext || window.webkitAudioContext;
+  if (!AC) return;
+
+  try {
+    audioContext = new AC();
+    const masterGain = audioContext.createGain();
+    masterGain.gain.value = .12;
+    masterGain.connect(audioContext.destination);
+
+    [130.81,164.81,196,220].forEach(f => {
+      const o = audioContext.createOscillator();
+      const g = audioContext.createGain();
+      o.type = "sine";
+      o.frequency.value = f;
+      g.gain.value = .009;
+      o.connect(g);
+      g.connect(masterGain);
+      o.start();
+    });
+
+    const notes = [261.63,293.66,329.63,392,349.23,329.63,293.66,261.63];
+    let n = 0;
+
+    musicTimer = setInterval(() => {
+      if (!audioContext || audioContext.state !== "running" || isPaused) return;
+
+      const now = audioContext.currentTime;
+      const o = audioContext.createOscillator();
+      const g = audioContext.createGain();
+
+      o.type = "triangle";
+      o.frequency.value = notes[n++ % notes.length];
+      g.gain.setValueAtTime(.0001, now);
+      g.gain.exponentialRampToValueAtTime(.06, now + .03);
+      g.gain.exponentialRampToValueAtTime(.0001, now + .28);
+
+      o.connect(g);
+      g.connect(masterGain);
+      o.start(now);
+      o.stop(now + .3);
+    }, 300);
+  } catch (e) {
+    console.error("Instrumental audio unavailable:", e);
+  }
+}
+
+function stopInstrumental() {
+  clearInterval(musicTimer);
+  musicTimer = null;
+
+  if (audioContext && audioContext.state !== "closed") {
+    audioContext.close().catch(() => {});
+  }
+
+  audioContext = null;
+}
+
+// Display scenes
+async function showScene(scene, runId) {
+  $("loveEnding").style.display = "none";
+  $("photos").style.display = "none";
+  $("content").style.display = "flex";
+  $("content").style.opacity = "0";
+
+  await wait(180, runId);
+  if (runId !== videoRun) return;
+
+  $("eyebrow").textContent = scene.eyebrow;
+  $("title").textContent = scene.title;
+  $("message").textContent = scene.text;
+  $("content").style.opacity = "1";
+
+  await speak(scene.text);
+  if (runId !== videoRun) return;
+  await wait(700, runId);
+}
+
+// Fireworks
+function fireworks() {
+  $("sparkles").innerHTML = "";
+
+  for (let i = 0; i < 90; i++) {
+    const p = document.createElement("span");
+    p.className = "spark";
+    p.textContent = ["✦","✧","✨","★","🎆"][i % 5];
+
+    const a = Math.random() * Math.PI * 2;
+    const d = 70 + Math.random() * 300;
+
+    p.style.setProperty("--dx", Math.cos(a) * d + "px");
+    p.style.setProperty("--dy", Math.sin(a) * d + "px");
+    p.style.color = ["#fff1a8","#ff91db","#fff","#ffc16d"][i % 4];
+
+    $("sparkles").appendChild(p);
+  }
+}
+
+// Final heart: birthday song starts just before arrow impact
+async function showEnding(runId) {
+  $("content").style.display = "none";
+  $("photos").style.display = "none";
+  $("loveEnding").style.display = "flex";
+  $("loveEnding").classList.remove("shoot", "blast");
+  $("heartMessage").style.opacity = "0";
+
+  stopInstrumental();
+
+  await wait(300, runId);
+  if (runId !== videoRun) return;
+
+  // Arrow begins flying toward the heart
+  $("loveEnding").classList.add("shoot");
+
+  // Arrow reaches the heart at around 765 ms.
+  // Start the song a little earlier, at 550 ms, before impact.
+  await wait(550, runId);
+  if (runId !== videoRun) return;
+
+  photoSong.pause();
+  photoSong.currentTime = 0;
+  photoSong.volume = 0.8;
+
+  try {
+    await photoSong.play();
+    $("musicLabel").textContent = "♪ Birthday Song ❤️";
+  } catch (e) {
+    $("musicLabel").textContent = "Birthday song could not play";
+    console.error("Check birthday-song.mp3:", e);
+  }
+
+  // Wait until the arrow touches the heart, then trigger the explosion
+  await wait(65, runId);
+  if (runId !== videoRun) return;
+
+  $("loveEnding").classList.add("blast");
+  fireworks();
+
+  await wait(3000, runId);
+  if (runId !== videoRun) return;
+}
+
+// Photo slideshow: keep the same song playing
+async function showPhotos(runId) {
+  stopInstrumental();
+
+  if ("speechSynthesis" in window) {
+    speechSynthesis.cancel();
+  }
+
+  $("loveEnding").style.display = "none";
+  $("content").style.display = "none";
+  $("photos").style.display = "flex";
+  $("musicLabel").textContent = "♪ Birthday Song ❤️";
+
+  // Do not restart the song here; it began just before arrow impact.
+  for (let i = 0; i < photoFiles.length; i++) {
+    if (runId !== videoRun) return;
+
+    $("finalPhoto").style.opacity = "0";
+
+    await wait(350, runId);
+    if (runId !== videoRun) return;
+
+    $("finalPhoto").onload = () => {
+      $("finalPhoto").style.opacity = "1";
+    };
+
+    $("finalPhoto").src = photoFiles[i];
+    $("photoCaption").textContent = photoCaptions[i];
+
+    await wait(4500, runId);
+  }
+
+  if (runId !== videoRun) return;
+
+  // Stop the song after the last photo
+  photoSong.pause();
+  photoSong.currentTime = 0;
+  $("musicLabel").textContent = "Happy Birthday, Sunny Bava! ❤️";
+}
+
+// Start video
+async function startVideo() {
+  if (started) return;
+
+  started = true;
+  isPaused = false;
+  videoRun++;
+
+  const runId = videoRun;
+
+  $("startScreen").style.display = "none";
+  $("pauseBtn").hidden = false;
+  $("pauseBtn").textContent = "⏸️ Pause";
+  $("restart").style.display = "block";
+  $("musicLabel").textContent = "♪ Original instrumental";
+
+  startTime = performance.now();
+  pausedTotal = 0;
+
+  startMusic();
+
+  clearInterval(clockTimer);
+
+  clockTimer = setInterval(() => {
+    if (isPaused || !started) return;
+
+    const seconds = Math.floor(
+      (performance.now() - startTime - pausedTotal) / 1000
+    );
+
+    $("timer").textContent =
+      String(Math.floor(seconds / 60)).padStart(2,"0") + ":" +
+      String(seconds % 60).padStart(2,"0");
+  }, 250);
+
+  for (const scene of scenes) {
+    if (runId !== videoRun) return;
+    await showScene(scene, runId);
+  }
+
+  if (runId !== videoRun) return;
+  await showEnding(runId);
+
+  if (runId !== videoRun) return;
+  await showPhotos(runId);
+
+  if (runId !== videoRun) return;
+
+  stopInstrumental();
+  photoSong.pause();
+  started = false;
+
+  $("pauseBtn").hidden = true;
+  $("restart").textContent = "↻ Watch Again";
+
+  clearInterval(clockTimer);
+  $("timer").textContent = "Happy Birthday! ❤️";
+}
+
+// Pause and resume
+async function togglePause() {
+  if (!started) return;
+
+  isPaused = !isPaused;
+  $("video").classList.toggle("paused", isPaused);
+  $("pauseBtn").textContent = isPaused ? "▶ Resume" : "⏸️ Pause";
+
+  if (isPaused) {
+    pauseStarted = performance.now();
+
+    if ("speechSynthesis" in window) speechSynthesis.pause();
+
+    if (audioContext && audioContext.state === "running") {
+      await audioContext.suspend();
+    }
+
+    photoSong.pause();
+  } else {
+    pausedTotal += performance.now() - pauseStarted;
+
+    if ("speechSynthesis" in window) speechSynthesis.resume();
+
+    if (audioContext && audioContext.state === "suspended") {
+      await audioContext.resume();
+    }
+
+    // Resume music only after it has started during the ending
+    if (
+      $("loveEnding").style.display === "flex" ||
+      $("photos").style.display === "flex"
+    ) {
+      if (
+        photoSong.currentTime > 0 ||
+        $("musicLabel").textContent === "♪ Birthday Song ❤️"
+      ) {
+        try {
+          await photoSong.play();
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+  }
+}
+
+// Replay
+function replayVideo() {
+  videoRun++;
+  started = false;
+  isPaused = false;
+
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+
+  stopInstrumental();
+
+  photoSong.pause();
+  photoSong.currentTime = 0;
+
+  clearInterval(clockTimer);
+  clearInterval(musicTimer);
+
+  $("video").classList.remove("paused");
+  $("startScreen").style.display = "flex";
+  $("content").style.display = "flex";
+  $("loveEnding").style.display = "none";
+  $("photos").style.display = "none";
+  $("pauseBtn").hidden = true;
+  $("restart").style.display = "none";
+  $("timer").textContent = "00:00";
+  $("musicLabel").textContent = "♪ Original instrumental";
+}
+
+$("startButton").addEventListener("click", startVideo);
+$("pauseBtn").addEventListener("click", togglePause);
+$("restart").addEventListener("click", replayVideo);
+
+photoSong.addEventListener("error", () => {
+  $("musicLabel").textContent = "Check birthday-song.mp3 filename";
+});
+
+$("finalPhoto").addEventListener("error", () => {
+  $("photoCaption").textContent = "Check your photo filenames ❤️";
+});
+</script>
+</body>
+</html>
